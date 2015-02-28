@@ -29,7 +29,7 @@
   <!-- 依赖的jar包 -->
   <dependencies>
   		
-  	<!-- Java语言的单元测试框架 -->
+  	<!-- Java语言的单元测试框架   -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
