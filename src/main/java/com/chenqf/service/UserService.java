@@ -18,7 +18,7 @@ public class UserService {
 		user.setName("陈其丰");
 		user.setAge(27);
 		user.setSex("1");
-		userDao.createTable("t_user");
+		//userDao.createTable("t_user");
 		return user;
 	}
 	
