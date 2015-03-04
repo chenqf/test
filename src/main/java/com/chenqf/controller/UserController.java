@@ -1,8 +1,8 @@
 package com.chenqf.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.chenqf.dto.UserDto;
-import com.chenqf.entity.User;
 import com.chenqf.service.UserService;
 
 @Controller
@@ -22,14 +21,19 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@RequestMapping(value = "/test", method = RequestMethod.GET)
+	
+	@RequestMapping(value = "/getUserById", method = RequestMethod.GET)
 	@ResponseBody
-	public User test(
-			HttpServletRequest request,
-			HttpServletResponse response,
-			HttpSession session)throws Exception {
+	public UserDto getUserById(Long id)throws Exception {
 		
-		return this.userService.test();
+		return this.userService.getUserById(id);
+	}
+	
+	@RequestMapping(value = "/queryUsers", method = RequestMethod.GET)
+	@ResponseBody
+	public List<UserDto> getUserById()throws Exception {
+		
+		return this.userService.queryUsers();
 	}
 	
 	@RequestMapping(value = "/test1", method = RequestMethod.GET)

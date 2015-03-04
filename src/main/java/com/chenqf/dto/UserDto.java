@@ -1,26 +1,24 @@
 package com.chenqf.dto;
 
 public class UserDto {
-	public String name;
-	public int age;
-	public String sex;
 	
-	public String getName() {
-		return name;
+	private Long userId;
+
+    private String username;
+
+	public Long getUserId() {
+		return userId;
 	}
-	public void setName(String name) {
-		this.name = name;
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
-	public int getAge() {
-		return age;
+
+	public String getUsername() {
+		return username;
 	}
-	public void setAge(int age) {
-		this.age = age;
-	}
-	public String getSex() {
-		return sex;
-	}
-	public void setSex(String sex) {
-		this.sex = sex;
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 }

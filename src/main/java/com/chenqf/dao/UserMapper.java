@@ -1,8 +1,10 @@
 package com.chenqf.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
-import com.chenqf.entity.User;
+import com.chenqf.dto.UserDto;
 
 /**
  * 
@@ -19,6 +21,12 @@ public interface UserMapper {
 	 * @param id
 	 * @return: User
 	 */
-	public User getById(@Param(value = "id") Long id);
+	public UserDto getById(@Param(value = "id") Long id);
+	
+	/**
+	 * 查询所有用户
+	 * @return
+	 */
+	public List<UserDto> queryUsers();
 
 }
