@@ -24,19 +24,27 @@
        <property name="password" value="${password}" />  
     </bean>  
     
-    <!-- 解析配置 -->
+    <!-- 解析配置-大总管 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">  
        <!-- 指定数据库连接池 -->
        <property name="dataSource" ref="dataSource" />  
        <!-- 显式指定Mapper文件位置 -->
 	   <property name="mapperLocations" value="classpath:mybatis/*.xml"/>  
-	   <!-- 自动扫描entity目录, 省掉Configuration.xml里的手工配置 -->
-	   <property name="typeAliasesPackage" value="com.chenqf.entity" />
     </bean>  
     
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.chenqf.dao" />
-		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+    <!-- 通过模板定制mybatis的行为  单个更新 -->  
+    <bean id="sqlSessionTemplateSimple" class="org.mybatis.spring.SqlSessionTemplate">     
+		<constructor-arg index="0" ref="sqlSessionFactory" />  
+		<!--更新采用单个模式 -->  
+		<constructor-arg index="1" value="SIMPLE"/>  
 	</bean>
-	<!-- http://blog.csdn.net/hupanfeng/article/details/21454847 -->
+    
+    <!-- 自动扫描Mapper对象 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<!-- 扫描路径 -->
+		<property name="basePackage" value="com.chenqf.dao" />
+		<!-- 指定模板 -->
+		<property name="sqlSessionTemplateBeanName" value="sqlSessionTemplateSimple" />
+	</bean>
+	
 </beans>  

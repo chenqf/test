@@ -13,10 +13,6 @@ import com.chenqf.entity.User;
  */
 public interface UserMapper {
 
-	
-	public void addUser(@Param(value = "name") String name);
-
-
 	/**
 	 * @Title: getById
 	 * @Description: 根据主键查询User
