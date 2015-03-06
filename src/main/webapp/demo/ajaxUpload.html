@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="./js/jquery.js"></script>
+</head>
+<body>
+	<input type="file" name="file" id="uploadInput"  multiple="multiple" />
+	<br>
+	<button id="ajaxUpload">ajax 上传</button>
+</body>
+</html>
+<script>
+	var fileObj = {};
+	$("#uploadInput").on("change", function(e){
+		var	oFile = this.files[0],
+			sName, 
+			sFileType = oFile.type,
+			nSize = 0,
+			nModTime;
+		if(!sFileType){
+			sFileType = "image/" + sName.split(".").pop().toLowerCase();
+		}
+		fileObj = {
+			// file name
+			name : oFile.name || oFile.fileName,
+			// file size
+	 		size : oFile.size || oFile.fileSize,
+	 		// file update time
+			modTime : oFile.lastModifiedDate.valueOf(),
+			// file type
+			type: oFile.type,
+			// file object
+			blob : oFile
+		};
+	});
+	
+	$('#ajaxUpload').on('click',function(e){
+		var uploadUrl = '../file/ajaxUpload',
+			method = 'POST',
+			fd = new FormData();
+		
+		fd.append("file", fileObj.blob);
+		
+		var xhr = new XMLHttpRequest();
+		//进度条
+		xhr.upload.addEventListener("progress", function(e){
+			console.log('progress',e)
+		}, false);		
+		//成功事件
+		xhr.addEventListener("load", function(e){
+			console.log('load',e)
+		}, false);
+		//失败事件
+		xhr.addEventListener("error", function(e){
+			console.log('error',e)
+		}, false);
+		//取消事件
+		xhr.addEventListener("abort", function(e){
+			console.log('abort',e)
+		}, false);
+		
+		xhr.open(method, uploadUrl);
+		xhr.send(fd);
+		
+	})
+</script>
