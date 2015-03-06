@@ -27,11 +27,17 @@
 	    </property>  
 	</bean>
 	
+	<!-- 文件上传 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">  
+        <property name="defaultEncoding" value="utf-8"></property>   
+        <property name="maxUploadSize" value="10485760000"></property>  
+        <property name="maxInMemorySize" value="40960"></property>  
+   </bean> 
 
 	<!-- 引入jdbc配置文件 -->
     <!-- <import resource="spring-jdbc.xml" />  -->
     
-    
+      
     <!-- 引入mybatis配置文件 -->
     <import resource="spring-mybatis.xml" /> 
 
