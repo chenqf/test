@@ -19,6 +19,6 @@
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service" />
 	</context:component-scan>
 	
-    <mvc:annotation-driven />
+    <mvc:annotation-driven /> 
     
 </beans>  
