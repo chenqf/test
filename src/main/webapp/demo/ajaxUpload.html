@@ -4,9 +4,17 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="./js/jquery.js"></script>
+<style>
+	a{
+    width: 200px;height: 30px;background-color: blue;display: block;margin: 100px auto;overflow: hidden;position: relative;
+}
+input{
+    font-size: 118px;cursor: pointer;position: absolute;right: 0;top: 0;opacity: 0;filter:alpha(opacity=0);
+}
+</style>
 </head>
 <body>
-	<input type="file" name="file" id="uploadInput"  multiple="multiple" accept="image/*" />
+	<a><input type="file" name="file" id="uploadInput"  multiple="multiple" accept="image/*" /></a>
 	<br>
 	<button id="ajaxUpload">ajax 上传</button>
 </body>
@@ -37,11 +45,11 @@
 	});
 	
 	$('#ajaxUpload').on('click',function(e){
-		var uploadUrl = '../file/ajaxUpload',
+		var uploadUrl = 'http://10.10.1.240/airmall/api/image/uploadImage',
 			method = 'POST',
 			fd = new FormData();
 		
-		fd.append("file", fileObj.blob);
+		fd.append("images", fileObj.blob);
 		
 		var xhr = new XMLHttpRequest();
 		//进度条
@@ -50,7 +58,7 @@
 		}, false);		
 		//成功事件
 		xhr.addEventListener("load", function(e){
-			console.log('load',e)
+			alert(e.currentTarget.response)
 		}, false);
 		//失败事件
 		xhr.addEventListener("error", function(e){
