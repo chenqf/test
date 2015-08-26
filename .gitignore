@@ -1,3 +1,5 @@
+.project
+.classpath
 /target
 
 /src/main/webapp/static/node_modules
